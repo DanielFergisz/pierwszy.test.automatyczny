@@ -1,4 +1,6 @@
+import org.junit.Assert;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -9,12 +11,17 @@ public class Zakładki {
 
     @Test
     public void przejsciaPomiedzyZakladkami() throws InterruptedException {
-        System.out.println("================ Uruchamianie testu ================");
-        System.setProperty("webdriver.chrome.driver", "G:/WebDrivers2/chromedriver.exe");
+        System.out.println("====================================================");
+        System.out.println("||              Uruchamianie testu                ||");
+        System.out.println("====================================================");
+        System.setProperty("webdriver.chrome.driver", "C:/WebDrivers/chromedriver.exe");
         System.out.println("Uruchamianie WebDrivera..");
+        System.out.println("");
+
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
+        String komunikatWWW = "Błędny adres strony !!";
         //Maksymalizuj okno przeglądarki
         driver.manage().window().maximize();
 
@@ -25,6 +32,14 @@ public class Zakładki {
         driver.navigate().to(www);
         Thread.sleep(1200);
 
+        try {
+            driver.findElement(By.xpath("//*[@id='kopageBarCookies']/a[1]")).click();
+        } catch (Exception ignored) {
+            System.out.println("Brak komunikatu Cookies !!");
+        }
+
+        Assertions.assertEquals(www, driver.getCurrentUrl(), komunikatWWW);
+
         //Kliknij w przycisk Filmy
         System.out.println("Przejdź do zakładki Filmy..");
         driver.findElement(By.cssSelector("a[href='filmy']")).click();
@@ -32,6 +47,7 @@ public class Zakładki {
 
         // Pobierz i wyświetl adres URL strony.
         System.out.println(driver.getCurrentUrl());
+        Assertions.assertEquals("https://www.repairbox.pl/filmy",driver.getCurrentUrl(), komunikatWWW );
 
         // Pobierz i wyświetl tytuł strony / tytuł karty
         System.out.println(driver.getTitle());
@@ -45,6 +61,8 @@ public class Zakładki {
 
         // Pobierz i wyświetl adres URL strony.
         System.out.println(driver.getCurrentUrl());
+        Assertions.assertEquals("https://www.repairbox.pl/aplikacje",driver.getCurrentUrl(), komunikatWWW );
+
 
         // Pobierz i wyświetl tytuł strony / tytuł karty
         System.out.println(driver.getTitle());
@@ -58,6 +76,7 @@ public class Zakładki {
 
         // Pobierz i wyświetl adres URL strony.
         System.out.println(driver.getCurrentUrl());
+        Assertions.assertEquals("https://www.repairbox.pl/poradniki",driver.getCurrentUrl(), komunikatWWW );
 
         // Pobierz i wyświetl tytuł strony / tytuł karty
         System.out.println(driver.getTitle());
@@ -71,6 +90,7 @@ public class Zakładki {
 
         // Pobierz i wyświetl adres URL strony.
         System.out.println(driver.getCurrentUrl());
+        Assertions.assertEquals("https://www.repairbox.pl/serwis",driver.getCurrentUrl(), komunikatWWW );
 
         // Pobierz i wyświetl tytuł strony / tytuł karty
         System.out.println(driver.getTitle());
@@ -84,6 +104,7 @@ public class Zakładki {
 
         // Pobierz i wyświetl adres URL strony.
         System.out.println(driver.getCurrentUrl());
+        Assertions.assertEquals("https://www.repairbox.pl/kontakt",driver.getCurrentUrl(), komunikatWWW );
 
         // Pobierz i wyświetl tytuł strony / tytuł karty
         System.out.println(driver.getTitle());
