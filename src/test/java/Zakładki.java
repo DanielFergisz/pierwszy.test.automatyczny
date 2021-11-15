@@ -97,6 +97,20 @@ public class Zakładki {
         System.out.println("#######################");
         Thread.sleep(1700);
 
+        //Kliknij w przycisk Narzędzia
+        System.out.println("Przejdź do zakładki Narzędzia..");
+        driver.findElement(By.cssSelector("a[href='narzedzia']")).click();
+        System.out.println("#######################");
+
+        // Pobierz i wyświetl adres URL strony.
+        System.out.println(driver.getCurrentUrl());
+        Assertions.assertEquals("https://www.repairbox.pl/narzedzia",driver.getCurrentUrl(), komunikatWWW );
+
+        // Pobierz i wyświetl tytuł strony / tytuł karty
+        System.out.println(driver.getTitle());
+        System.out.println("#######################");
+        Thread.sleep(1700);
+
         //Kliknij w przycisk Kontakt
         System.out.println("Przejdź do zakładki Kontakt..");
         driver.findElement(By.cssSelector("a[href='kontakt']")).click();
